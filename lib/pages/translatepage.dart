@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/pages/splashScreen.dart';
-class SecondRoute extends StatelessWidget {
+import 'package:my_app/pages/translatedResult.dart';
+
+class TranslatePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('HAPUE 乐翻'), backgroundColor: Colors.blue
-        ),
+        appBar: AppBar(title: Text('HAPUE 乐翻'), backgroundColor: Colors.blue),
         body: Column(
           children: <Widget>[
-            // Padding(
-            //   padding: EdgeInsets.symmetric(
-            //     vertical: 259.0,
-            //   ),
-            // ),
             Container(
-              height:500,
+              height: 500,
               child: Image.asset('assets/images/slow-property-sign-k-1311.png'),
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -39,9 +32,11 @@ class SecondRoute extends StatelessWidget {
                     textColor: Colors.black,
                     onPressed: () {
                       Navigator.push(
-            context,
-            new MaterialPageRoute(builder: (context) => new TranslateResult()),
-          );},
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new TranslateResult()),
+                      );
+                    },
                   ),
                 ),
                 Container(
@@ -67,6 +62,7 @@ class SecondRoute extends StatelessWidget {
           ],
         ));
   }
+
   Widget showLoad() {
     return new Column(
       mainAxisAlignment: MainAxisAlignment.center,
