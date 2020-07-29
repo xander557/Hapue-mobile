@@ -1,131 +1,105 @@
+import 'dart:core';
+import 'dart:core' as prefix0;
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:my_app/main.dart';
 
 class TranslateResult extends StatelessWidget {
+  final File image;
+  TranslateResult({Key key, @required this.image}) : super(key: key);
+  Widget padding() {
+    return Padding(padding: EdgeInsets.all(5.0));
+  }
+
+  Widget rowName(prefix0.String text) {
+    return Row(
+      children: <Widget>[Text("    " + text, style: TextStyle(fontSize: 20))],
+    );
+  }
+
+  Widget rowBox(prefix0.String text) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        Container(
+          width: 350,
+          height: 150,
+          child: MaterialButton(
+            shape: RoundedRectangleBorder(
+                side: BorderSide(
+                    width: 2, color: Colors.blue, style: BorderStyle.solid)),
+            child: Text(
+              text,
+              style: TextStyle(fontSize: 20, color: Colors.black),
+            ),
+            color: Colors.white,
+            textColor: Colors.black,
+          ),
+        ),
+        Container(
+          width: 50,
+          height: 150,
+          child: MaterialButton(
+            shape: RoundedRectangleBorder(
+                side: BorderSide(
+                    width: 2,
+                    color: Colors.lightBlue,
+                    style: BorderStyle.solid)),
+            child: Icon(
+              Icons.play_arrow,
+              color: Colors.lightBlue,
+            ),
+            color: Colors.white,
+            textColor: Colors.black,
+            onPressed: () {},
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget oneMoreShot(context) {
+    return Container(
+      width: 150,
+      height: 50,
+      child: MaterialButton(
+        shape: RoundedRectangleBorder(
+            side: BorderSide(
+                width: 2, color: Colors.white, style: BorderStyle.solid)),
+        child: Text("再来一拍", style: TextStyle(fontSize: 20)),
+        color: Colors.white,
+        textColor: Colors.blue,
+        onPressed: () {
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => MyApp()),
+              (Route<dynamic> route) => false);
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text('HAPUE 乐翻'), backgroundColor: Colors.blue),
         body: Column(
           children: <Widget>[
+            padding(),
             Container(
               height: 200,
-              child: Image.asset('assets/images/slow-property-sign-k-1311.png'),
+              child: Image.file(
+                  image), //Image.asset('assets/images/slow-property-sign-k-1311.png'),
             ),
-            Row(
-              children: <Widget>[
-                Text("    原文提取 ", style: TextStyle(fontSize: 20))
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Container(
-                  width: 350,
-                  height: 150,
-                  child: MaterialButton(
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide(
-                            width: 2,
-                            color: Colors.black,
-                            style: BorderStyle.solid)),
-                    child: Text(
-                      "slow",
-                      style: TextStyle(fontSize: 20, color: Colors.black),
-                    ),
-                    color: Colors.white,
-                    textColor: Colors.black,
-                  ),
-                ),
-                Container(
-                  width: 50,
-                  height: 150,
-                  child: MaterialButton(
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide(
-                            width: 2,
-                            color: Colors.black,
-                            style: BorderStyle.solid)),
-                    child: Icon(Icons.play_arrow),
-                    color: Colors.white,
-                    textColor: Colors.black,
-                    onPressed: () {},
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 10.0,
-              ),
-            ),
-            Row(
-              children: <Widget>[
-                Text("    翻译结果 ", style: TextStyle(fontSize: 20))
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Container(
-                  width: 350,
-                  height: 150,
-                  child: MaterialButton(
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide(
-                            width: 2,
-                            color: Colors.black,
-                            style: BorderStyle.solid)),
-                    child: Text(
-                      "慢行",
-                      style: TextStyle(fontSize: 20, color: Colors.black),
-                    ),
-                    color: Colors.white,
-                    textColor: Colors.black,
-                  ),
-                ),
-                Container(
-                  width: 50,
-                  height: 150,
-                  child: MaterialButton(
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide(
-                            width: 2,
-                            color: Colors.black,
-                            style: BorderStyle.solid)),
-                    child: Icon(Icons.play_arrow),
-                    color: Colors.white,
-                    textColor: Colors.black,
-                    onPressed: () {},
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 10.0,
-              ),
-            ),
-            Container(
-              width: 150,
-              height: 50,
-              child: MaterialButton(
-                shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                        width: 2,
-                        color: Colors.white,
-                        style: BorderStyle.solid)),
-                child: Text("再来一拍"),
-                color: Colors.white,
-                textColor: Colors.black,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    new MaterialPageRoute(builder: (context) => new MyApp()),
-                  );
-                },
-              ),
-            ),
+            padding(),
+            rowName("原文提取"),
+            rowBox("Slow"),
+            padding(),
+            rowName("翻译结果"),
+            rowBox("慢行"),
+            padding(),
+            oneMoreShot(context)
           ],
         ));
   }
